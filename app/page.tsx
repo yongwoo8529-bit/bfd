@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { ArrowRight, Images } from "lucide-react"
+import { Images } from "lucide-react"
 import { CARDS, COUPON_MILESTONE, GIFT_MILESTONE } from "@/lib/cards"
 import { useCollection } from "@/lib/use-collection"
 import { HeroSection } from "@/components/hero-section"
@@ -69,24 +69,17 @@ export default function Page() {
       <HeroSection />
 
       {/* 보물 카드 컬렉션 보기 버튼 */}
-      <section className="mx-auto max-w-3xl px-5 pt-6 pb-2">
-        <Link
-          href="/collection"
-          className="group flex items-center gap-4 rounded-3xl bg-card p-5 shadow-md ring-1 ring-border transition active:scale-[0.99] hover:shadow-lg"
-        >
-          <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-            <Images className="size-7" />
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="text-xs font-bold tracking-widest text-primary">TREASURE CARDS</p>
-            <h2 className="text-lg font-extrabold text-foreground">보물 카드 컬렉션 보기</h2>
-            <p className="truncate text-sm text-muted-foreground">
-              {count}/{CARDS.length}장 수집 · 한 장씩 넘겨보기
-            </p>
-          </div>
-          <ArrowRight className="size-5 shrink-0 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-primary" />
-        </Link>
-      </section>
+      <div className="mx-auto max-w-md px-4 pt-6 pb-2">
+        <div className="flex items-center gap-2 rounded-full border border-border bg-card/95 p-2 shadow-xl backdrop-blur-md">
+          <Link
+            href="/collection"
+            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-primary py-3 text-sm font-bold text-primary-foreground transition-transform active:translate-y-px"
+          >
+            <Images className="size-4" />
+            보물 카드 컬렉션 보기
+          </Link>
+        </div>
+      </div>
 
       <HowItWorks />
 
