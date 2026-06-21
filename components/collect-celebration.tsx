@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { Sparkles } from "lucide-react"
-import { rarityLabel, type TreasureCard } from "@/lib/cards"
+import { type TreasureCard } from "@/lib/cards"
 import { Modal } from "./modal"
 
 export function CollectCelebration({
@@ -36,20 +36,12 @@ export function CollectCelebration({
           <div className="animate-float relative mx-auto mt-5 aspect-[3/4] w-40 overflow-hidden rounded-2xl shadow-xl ring-2 ring-accent">
             <Image
               src={card.image || "/placeholder.svg"}
-              alt={card.name}
+              alt={`No.${card.no} 카드`}
               fill
               sizes="160px"
               className="object-cover"
             />
-            <span className="absolute right-2 top-2 rounded-md bg-foreground/70 px-1.5 py-0.5 text-[9px] font-bold tracking-wider text-background">
-              {rarityLabel[card.rarity]}
-            </span>
           </div>
-
-          <h3 className="mt-4 text-lg font-extrabold text-foreground">
-            {card.name}
-          </h3>
-          <p className="text-sm text-muted-foreground">{card.subtitle}</p>
 
           <p className="mt-4 text-sm font-bold text-primary">
             {count} / {total}장 수집 완료

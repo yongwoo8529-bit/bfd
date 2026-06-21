@@ -250,12 +250,6 @@ function Slide({
         />
       </div>
 
-      {/* 카드 이름 */}
-      <div className="px-5 py-4">
-        <h3 className="text-xl font-extrabold leading-tight text-foreground text-balance">
-          {card.name}
-        </h3>
-      </div>
     </article>
   )
 }
