@@ -76,7 +76,7 @@ export default function Page() {
             className="flex flex-1 items-center justify-center gap-2 rounded-full bg-primary py-3 text-sm font-bold text-primary-foreground transition-transform active:translate-y-px"
           >
             <Images className="size-4" />
-            보물 카드 컬렉션 보기
+            내 보물 카드 컬렉션 보기
           </Link>
         </div>
       </div>
