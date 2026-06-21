@@ -9,7 +9,7 @@ import { useCollection } from "@/lib/use-collection"
 import { HeroSection } from "@/components/hero-section"
 import { HowItWorks } from "@/components/how-it-works"
 import { ProgressTracker } from "@/components/progress-tracker"
-import { ScanBar } from "@/components/scan-bar"
+import { QrCode } from "lucide-react"
 import { RewardModal, type RewardType } from "@/components/reward-modal"
 import { CollectCelebration } from "@/components/collect-celebration"
 import { QRScannerModal } from "@/components/qr-scanner-modal"
@@ -68,8 +68,21 @@ export default function Page() {
   }, [collect])
 
   return (
-    <main className="min-h-screen bg-background pb-28">
+    <main className="min-h-screen bg-background pb-10">
       <HeroSection />
+
+      {/* QR 스캔 버튼 */}
+      <div className="mx-auto max-w-md px-5 py-5">
+        <button
+          type="button"
+          onClick={() => setScannerOpen(true)}
+          disabled={count >= CARDS.length}
+          className="flex w-full items-center justify-center gap-2 rounded-full bg-primary py-4 text-base font-bold text-primary-foreground shadow-lg transition-transform active:translate-y-px disabled:opacity-50"
+        >
+          <QrCode className="size-5" />
+          {count >= CARDS.length ? "모든 카드 수집 완료!" : "QR 스캔하기"}
+        </button>
+      </div>
 
       <HowItWorks />
 
@@ -108,8 +121,6 @@ export default function Page() {
           2026 교내 비즈쿨 BFD 카드 컬렉션 이벤트 · 운영본부 문의 환영
         </p>
       </footer>
-
-      <ScanBar onScan={() => setScannerOpen(true)} done={count >= CARDS.length} />
 
       {/* QR 스캐너 모달 */}
       <QRScannerModal
