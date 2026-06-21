@@ -210,15 +210,10 @@ function Slide({
           </div>
         </div>
         <div className="px-5 py-5 text-center">
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            아직 찾지 못한 보물이에요.
-            <br />
-            QR코드를 스캔하면 카드가 공개됩니다.
-          </p>
           <button
             type="button"
             onClick={onScan}
-            className="mt-4 inline-flex items-center justify-center gap-2 w-full rounded-2xl bg-primary py-2.5 text-xs font-bold text-primary-foreground shadow-md transition active:scale-98 hover:bg-primary/95"
+            className="inline-flex items-center justify-center gap-2 w-full rounded-2xl bg-primary py-2.5 text-xs font-bold text-primary-foreground shadow-md transition active:scale-98 hover:bg-primary/95"
           >
             <QrCode className="size-3.5" />
             QR 스캔하기

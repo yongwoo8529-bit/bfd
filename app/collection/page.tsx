@@ -33,7 +33,7 @@ export default function CollectionPage() {
     <main className="min-h-screen bg-background pb-16">
       {/* 컬렉션 헤더 배너 */}
       <header className="relative overflow-hidden">
-        <div className="relative h-52 w-full md:h-64">
+        <div className="relative w-full aspect-[16/5]">
           <Image
             src="/collection-banner.png"
             alt="수박처럼 시원한 하루 배너"
