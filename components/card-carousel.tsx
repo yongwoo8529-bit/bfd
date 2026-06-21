@@ -2,8 +2,8 @@
 
 import { useCallback, useRef, useState } from "react"
 import Image from "next/image"
-import { ChevronLeft, ChevronRight, Lock, MapPin, QrCode } from "lucide-react"
-import { CARDS, rarityLabel, type TreasureCard } from "@/lib/cards"
+import { ChevronLeft, ChevronRight, Lock, QrCode } from "lucide-react"
+import { CARDS, type TreasureCard } from "@/lib/cards"
 
 const rarityStyles: Record<
   TreasureCard["rarity"],
@@ -241,9 +241,6 @@ function Slide({
         >
           No.{card.no}
         </span>
-        <span className="absolute right-4 top-4 z-20 rounded-lg bg-foreground/75 px-2.5 py-1 text-[10px] font-bold tracking-wider text-background">
-          {rarityLabel[card.rarity]}
-        </span>
 
         {/* 사진 */}
         <div className={`absolute inset-0 bg-gradient-to-b ${styles.glow} to-transparent`} />
@@ -258,18 +255,11 @@ function Slide({
         />
       </div>
 
-      {/* 상세 정보 (항상 표시) */}
+      {/* 카드 이름 */}
       <div className="px-5 py-4">
         <h3 className="text-xl font-extrabold leading-tight text-foreground text-balance">
           {card.name}
         </h3>
-        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground text-pretty">
-          {card.subtitle}
-        </p>
-        <div className="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary">
-          <MapPin className="size-3.5" />
-          {card.spot}에서 발견
-        </div>
       </div>
     </article>
   )

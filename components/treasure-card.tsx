@@ -1,8 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import { Lock, MapPin } from "lucide-react"
-import { rarityLabel, type TreasureCard } from "@/lib/cards"
+import { Lock } from "lucide-react"
+import { type TreasureCard } from "@/lib/cards"
 
 const rarityStyles: Record<
   TreasureCard["rarity"],
@@ -62,9 +62,6 @@ export function TreasureCardItem({
 
       {collected ? (
         <>
-          <span className="absolute right-2 top-2 z-10 rounded-md bg-foreground/70 px-1.5 py-0.5 text-[9px] font-bold tracking-wider text-background">
-            {rarityLabel[card.rarity]}
-          </span>
           <div
             className={`absolute inset-0 bg-gradient-to-b ${styles.glow} to-transparent`}
           />
@@ -82,9 +79,6 @@ export function TreasureCardItem({
               <p className="truncate text-sm font-extrabold text-foreground">
                 {card.name}
               </p>
-              <p className="truncate text-[11px] text-muted-foreground">
-                {card.subtitle}
-              </p>
             </div>
           </div>
         </>
@@ -94,10 +88,6 @@ export function TreasureCardItem({
             <Lock className="size-5 text-muted-foreground" />
           </div>
           <p className="text-xs font-bold text-muted-foreground">??? 보물</p>
-          <span className="mt-1 inline-flex items-center gap-1 rounded-full bg-background px-2 py-1 text-[10px] font-semibold text-primary">
-            <MapPin className="size-3" />
-            {card.spot}
-          </span>
         </div>
       )}
     </button>
