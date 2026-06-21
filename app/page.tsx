@@ -9,7 +9,7 @@ import { useCollection } from "@/lib/use-collection"
 import { HeroSection } from "@/components/hero-section"
 import { HowItWorks } from "@/components/how-it-works"
 import { ProgressTracker } from "@/components/progress-tracker"
-import { QrCode } from "lucide-react"
+import { ScanBar } from "@/components/scan-bar"
 import { RewardModal, type RewardType } from "@/components/reward-modal"
 import { CollectCelebration } from "@/components/collect-celebration"
 import { QRScannerModal } from "@/components/qr-scanner-modal"
@@ -30,12 +30,10 @@ export default function Page() {
   const [toastMsg, setToastMsg] = useState<string | null>(null)
   const collectionRef = useRef<HTMLDivElement>(null)
 
-  // 방금 수집한 카드 객체
   const celebrateCard = justCollected
     ? CARDS.find((c) => c.id === justCollected) ?? null
     : null
 
-  // QR코드 스캔 처리: URL의 ?card=ID 값을 읽어 자동 수집
   useEffect(() => {
     if (!hydrated) return
     const params = new URLSearchParams(window.location.search)
@@ -49,7 +47,6 @@ export default function Page() {
         setToastMsg("유효하지 않은 QR 코드입니다")
         setTimeout(() => setToastMsg(null), 2500)
       }
-      // 쿼리 파라미터 제거 (새로고침 시 중복 방지)
       const url = new URL(window.location.href)
       url.searchParams.delete("card")
       window.history.replaceState({}, "", url.toString())
@@ -68,21 +65,28 @@ export default function Page() {
   }, [collect])
 
   return (
-    <main className="min-h-screen bg-background pb-10">
+    <main className="min-h-screen bg-background pb-28">
       <HeroSection />
 
-      {/* QR 스캔 버튼 */}
-      <div className="mx-auto max-w-md px-5 py-5">
-        <button
-          type="button"
-          onClick={() => setScannerOpen(true)}
-          disabled={count >= CARDS.length}
-          className="flex w-full items-center justify-center gap-2 rounded-full bg-primary py-4 text-base font-bold text-primary-foreground shadow-lg transition-transform active:translate-y-px disabled:opacity-50"
+      {/* 보물 카드 컬렉션 보기 버튼 */}
+      <section className="mx-auto max-w-3xl px-5 pt-6 pb-2">
+        <Link
+          href="/collection"
+          className="group flex items-center gap-4 rounded-3xl bg-card p-5 shadow-md ring-1 ring-border transition active:scale-[0.99] hover:shadow-lg"
         >
-          <QrCode className="size-5" />
-          {count >= CARDS.length ? "모든 카드 수집 완료!" : "QR 스캔하기"}
-        </button>
-      </div>
+          <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+            <Images className="size-7" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs font-bold tracking-widest text-primary">TREASURE CARDS</p>
+            <h2 className="text-lg font-extrabold text-foreground">보물 카드 컬렉션 보기</h2>
+            <p className="truncate text-sm text-muted-foreground">
+              {count}/{CARDS.length}장 수집 · 한 장씩 넘겨보기
+            </p>
+          </div>
+          <ArrowRight className="size-5 shrink-0 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-primary" />
+        </Link>
+      </section>
 
       <HowItWorks />
 
@@ -93,25 +97,6 @@ export default function Page() {
           onClaimGift={() => count >= GIFT_MILESTONE && setReward("gift")}
           onClaimCoupon={() => count >= COUPON_MILESTONE && setReward("coupon")}
         />
-
-        <section className="mx-auto max-w-3xl px-5 py-8">
-          <Link
-            href="/collection"
-            className="group flex items-center gap-4 rounded-3xl bg-card p-5 shadow-md ring-1 ring-border transition active:scale-[0.99] hover:shadow-lg"
-          >
-            <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-              <Images className="size-7" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-xs font-bold tracking-widest text-primary">TREASURE CARDS</p>
-              <h2 className="text-lg font-extrabold text-foreground">보물 카드 컬렉션 보기</h2>
-              <p className="truncate text-sm text-muted-foreground">
-                {count}/{CARDS.length}장 수집 · 한 장씩 넘겨보기
-              </p>
-            </div>
-            <ArrowRight className="size-5 shrink-0 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-primary" />
-          </Link>
-        </section>
       </div>
 
       <footer className="mx-auto max-w-3xl px-5 pb-8 text-center">
@@ -122,14 +107,14 @@ export default function Page() {
         </p>
       </footer>
 
-      {/* QR 스캐너 모달 */}
+      <ScanBar onScan={() => setScannerOpen(true)} done={count >= CARDS.length} />
+
       <QRScannerModal
         isOpen={scannerOpen}
         onClose={() => setScannerOpen(false)}
         onScanSuccess={handleScanSuccess}
       />
 
-      {/* 신규 수집 축하 모달 */}
       <CollectCelebration
         card={celebrateCard}
         count={count}
@@ -138,10 +123,8 @@ export default function Page() {
         onConfirm={() => { clearJustCollected(); router.push("/collection") }}
       />
 
-      {/* 보상 모달 */}
       <RewardModal type={reward} onClose={() => setReward(null)} />
 
-      {/* 토스트 피드백 */}
       {toastMsg && (
         <div className="fixed bottom-28 left-1/2 z-50 -translate-x-1/2 rounded-full bg-slate-800/95 px-5 py-2.5 text-xs font-bold text-white shadow-xl backdrop-blur-sm transition-all duration-300">
           {toastMsg}
