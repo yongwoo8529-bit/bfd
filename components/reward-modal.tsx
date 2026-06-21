@@ -5,9 +5,6 @@ import { Modal } from "./modal"
 
 export type RewardType = "gift" | "coupon" | null
 
-// 데모용 쿠폰 코드. 실제 운영 시 서버에서 발급하세요.
-const COUPON_CODE = "BFD-COMPLETE-2026"
-
 export function RewardModal({
   type,
   onClose,
@@ -49,14 +46,6 @@ export function RewardModal({
               모든 BFD 카드를 모았어요! 운영본부에 이 화면을 보여주시면{" "}
               <strong className="text-foreground">BFD 최종 특별 보상</strong>을 지급해 드립니다.
             </p>
-            <div className="mt-4 rounded-2xl border-2 border-dashed border-coral/50 bg-coral/5 p-4">
-              <p className="text-[11px] font-semibold text-muted-foreground">
-                특별 보상 코드
-              </p>
-              <p className="mt-1 font-mono text-lg font-extrabold tracking-wider text-coral">
-                {COUPON_CODE}
-              </p>
-            </div>
             <p className="mt-3 text-[11px] text-muted-foreground">
               운영본부에 이 화면을 보여주시면 보상을 등록해 드립니다.
             </p>

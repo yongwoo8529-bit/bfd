@@ -18,7 +18,7 @@ export const CARDS: TreasureCard[] = [
     name: "정문 앞",
     subtitle: "BFD ORIGIN",
     spot: "정문 앞",
-    image: "/bfd_card_placeholder.png",
+    image: "/cards/card1.png",
     rarity: "normal",
   },
   {
@@ -27,7 +27,7 @@ export const CARDS: TreasureCard[] = [
     name: "영상교육관",
     subtitle: "BFD VISION",
     spot: "영상교육관",
-    image: "/bfd_card_placeholder.png",
+    image: "/cards/card2.png",
     rarity: "normal",
   },
   {
@@ -36,7 +36,7 @@ export const CARDS: TreasureCard[] = [
     name: "2호관",
     subtitle: "BFD CREW",
     spot: "2호관",
-    image: "/bfd_card_placeholder.png",
+    image: "/cards/card3.png",
     rarity: "normal",
   },
   {
@@ -45,7 +45,7 @@ export const CARDS: TreasureCard[] = [
     name: "1호관",
     subtitle: "BFD GRIND",
     spot: "1호관",
-    image: "/bfd_card_placeholder.png",
+    image: "/cards/card4.png",
     rarity: "rare",
   },
   {
@@ -54,7 +54,7 @@ export const CARDS: TreasureCard[] = [
     name: "선린인고 중앙",
     subtitle: "BFD HUSTLE",
     spot: "선린인터넷고등학교 중앙",
-    image: "/bfd_card_placeholder.png",
+    image: "/cards/card5.png",
     rarity: "rare",
   },
   {
@@ -63,7 +63,7 @@ export const CARDS: TreasureCard[] = [
     name: "운동장",
     subtitle: "BFD LEGACY",
     spot: "운동장",
-    image: "/bfd_card_placeholder.png",
+    image: "/cards/card6.png",
     rarity: "rare",
   },
   {
@@ -72,7 +72,7 @@ export const CARDS: TreasureCard[] = [
     name: "체육관",
     subtitle: "BFD PHANTOM",
     spot: "체육관",
-    image: "/bfd_card_placeholder.png",
+    image: "/cards/card7.png",
     rarity: "legend",
   },
 ]

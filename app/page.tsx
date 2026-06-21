@@ -1,6 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState } from "react"
+import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { ArrowRight, Images } from "lucide-react"
 import { CARDS, COUPON_MILESTONE, GIFT_MILESTONE } from "@/lib/cards"
@@ -14,6 +15,7 @@ import { CollectCelebration } from "@/components/collect-celebration"
 import { QRScannerModal } from "@/components/qr-scanner-modal"
 
 export default function Page() {
+  const router = useRouter()
   const {
     count,
     hydrated,
@@ -122,6 +124,7 @@ export default function Page() {
         count={count}
         total={CARDS.length}
         onClose={clearJustCollected}
+        onConfirm={() => { clearJustCollected(); router.push("/collection") }}
       />
 
       {/* 보상 모달 */}

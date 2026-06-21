@@ -10,11 +10,13 @@ export function CollectCelebration({
   count,
   total,
   onClose,
+  onConfirm,
 }: {
   card: TreasureCard | null
   count: number
   total: number
   onClose: () => void
+  onConfirm?: () => void
 }) {
   return (
     <Modal open={card !== null} onClose={onClose} labelledBy="celebrate-title">
@@ -56,7 +58,7 @@ export function CollectCelebration({
 
           <button
             type="button"
-            onClick={onClose}
+            onClick={onConfirm ?? onClose}
             className="mt-5 w-full rounded-full bg-accent py-3 text-sm font-bold text-accent-foreground transition-transform active:translate-y-px"
           >
             컬렉션에 보관하기
