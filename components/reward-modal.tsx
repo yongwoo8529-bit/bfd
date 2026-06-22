@@ -58,7 +58,7 @@ export function RewardModal({
             </p>
             <div className="mt-4 rounded-2xl border-2 border-dashed border-accent/60 bg-accent/10 p-4">
               <p className="text-sm font-extrabold text-foreground">
-                🎁 4장 달성 기념품 교환권
+                🎁 비즈쿨 상품 10% 할인권
               </p>
               <p className="mt-1 text-[11px] text-muted-foreground">
                 선착순 소진 시 조기 마감될 수 있어요.
